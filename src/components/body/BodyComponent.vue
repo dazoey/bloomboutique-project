@@ -19,7 +19,7 @@ import BungaCard from '../bunga/BungaCard.vue';
   <BungaCard></BungaCard>
 </div>
 
-<div class="footer-card">
+<div id="footer-section" class="footer-card">
 <FooterCard></FooterCard>
 </div>
 

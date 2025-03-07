@@ -1,3 +1,12 @@
+<script setup>
+function scrollToFooter() {
+  const bungaSection = document.getElementById('footer-section');
+  if (bungaSection) {
+    bungaSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+
 <template>
   <div class="experience-section">
     <div class="experience-container">
@@ -13,15 +22,13 @@
           <li>Pilihan desain rangkaian eksklusif</li>
           <li>Pelayanan ramah dan profesional</li>
         </ul>
-        <button class="experience-button">Lihat Selengkapnya</button>
+        <button class="experience-button" @click="scrollToFooter">Lihat Selengkapnya</button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
 
-</script>
 
 <style scoped>
 .experience-section {
