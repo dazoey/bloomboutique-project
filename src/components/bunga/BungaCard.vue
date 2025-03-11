@@ -48,7 +48,7 @@
           <img class="foto" src="https://imgur.com/gGUzZxe.jpg" alt="tulip">
           <h3 class="judul-card">Buket Tulip</h3>
           <div class="center">
-            <p>otak saya sudah tidak bisa dipakai lagi dikarenakan kecanduan pornografi, tolong bantu saya dalam mengumpulkan dana untuk operasi saya</p>
+            <p>Bunga tulip hadir dengan warna-warna cerah yang menyegarkan. Melambangkan kebahagiaan dan awal yang baru, tulip adalah pilihan sempurna untuk hadiah di musim semi atau sebagai ungkapan kasih sayang yang manis.</p>
           </div>
           <div class="foot">
             <a class="cta" href="#" target="_blank" rel="nofollow noopener">Pesan</a>
