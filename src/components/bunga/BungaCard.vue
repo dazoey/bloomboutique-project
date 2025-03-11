@@ -34,7 +34,7 @@
           <img class="foto" src="https://imgur.com/DPKI4BF.jpg" alt="lili">
           <h3 class="judul-card">Buket Lili</h3>
           <div class="center">
-            <p>Bunga tulip hadir dengan warna-warna cerah yang menyegarkan. Melambangkan kebahagiaan dan awal yang baru, tulip adalah pilihan sempurna untuk hadiah di musim semi atau sebagai ungkapan kasih sayang yang manis.</p>
+            <p>Dengan bentuknya yang khas dan aroma lembut, bunga lili adalah pilihan elegan untuk segala acara. Sering digunakan dalam rangkaian bunga untuk melambangkan kesucian, keberuntungan, dan ketenangan.</p>
           </div>
           <div class="foot">
             <a class="cta" href="#" target="_blank" rel="nofollow noopener">Pesan</a>
