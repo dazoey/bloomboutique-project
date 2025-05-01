@@ -1,10 +1,18 @@
-<script setup>
-function scrollToFooter() {
-  const bungaSection = document.getElementById('footer-section');
-  if (bungaSection) {
-    bungaSection.scrollIntoView({ behavior: 'smooth' });
+<script >
+export default {
+  name: 'ExperienceBodyComponent',
+  methods: {
+    scrollToFooter() {
+      const bungaSection = document.getElementById('footer-section');
+      if (bungaSection) {
+        bungaSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   }
 }
+
+
+
 </script>
 
 <template>
