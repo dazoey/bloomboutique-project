@@ -1,8 +1,13 @@
-<script setup>
-function scrollToBunga() {
-  const bungaSection = document.getElementById('bunga-section');
-  if (bungaSection) {
-    bungaSection.scrollIntoView({ behavior: 'smooth' });
+<script >
+export default {
+  name: 'BodyElementor',
+  methods: {
+    scrollToBunga() {
+      const bungaSection = document.getElementById('bunga-section');
+      if (bungaSection) {
+        bungaSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   }
 }
 </script>
