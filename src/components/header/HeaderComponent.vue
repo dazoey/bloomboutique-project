@@ -1,23 +1,30 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true,
+<script>
+export default {
+  name: 'HeaderComponent',
+  props: {
+    msg: {
+      type: String,
+      required: true
+    }
   },
-})
+  methods: {
+    goToCharity() {
+      this.$router.push('/HomePage');
+    }
+  }
+
+}
 </script>
 
 <template>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-header">
       <div class="logo-container">
-        <img class="logo" src="https://imgur.com/TyLFHJz.png" alt="#" height="30">
+        <img class="logo" src="https://imgur.com/TyLFHJz.png" alt="logo" height="30">
       </div>
 
-
-
       <ul class="menu">
-        <li><a href="App.vue">Home</a></li>
+        <li><a ><router-link to="/HomePage">Home</router-link></a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
@@ -26,7 +33,6 @@ defineProps({
 </template>
 
 <style scoped>
-
 .navbar {
   position: fixed;
   top: 0;
@@ -54,18 +60,17 @@ defineProps({
 }
 
 .logo {
-  height: 50px; 
+  height: 50px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
 }
 
-
 .menu {
   display: flex;
   gap: 20px;
   list-style: none;
-  padding: 20;
+  padding: 0;
   font-size: 16px;
   margin: 0;
   flex: 1;
@@ -74,7 +79,7 @@ defineProps({
 
 .menu li a {
   text-decoration: none;
-  color: rgb(115,90,89);
+  color: rgb(115, 90, 89);
 }
 
 .animate {
@@ -82,5 +87,4 @@ defineProps({
   background-color: #f8f8f8;
   transition: all ease 0.4s;
 }
-
 </style>
