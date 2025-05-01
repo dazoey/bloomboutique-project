@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import App from '../App.vue'
 import PaymentPage from '../views/PaymentPage.vue'
 import HomePage from '../views/HomePage.vue'
 

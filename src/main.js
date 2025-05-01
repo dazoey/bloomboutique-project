@@ -1,6 +1,8 @@
-import './assets/main.css'
-
+// src/main.js
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router' // Pastikan path ini benar
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(router) // Daftarkan router ke aplikasi
+app.mount('#app')
