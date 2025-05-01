@@ -1,60 +1,36 @@
-<script setup>
-import { onMounted } from 'vue'
-import HeaderComponent from './components/header/HeaderComponent.vue';
-import BodyComponent from './components/body/BodyComponent.vue';
-
-onMounted(() => {
-  document.title = 'BloomBoutique'
-  let link = document.querySelector("link[rel~='icon']")
-  if (!link) {
-    link = document.createElement('link')
-    link.rel = 'icon'
-    document.head.appendChild(link)
-  }
-  link.href = 'https://imgur.com/YfG6hPh.png'
-})
-
+<!-- src/App.vue -->
+<script>
+export default {
+  name: 'App'
+}
 </script>
 
 <template>
-  <header>
-
-
-    <div class="wrapper">
-      <HeaderComponent />
-    </div>
-  </header>
-
-  <main>
-    <BodyComponent />
-  </main>
+  <div id="app">
+    <router-view/>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+body {
+  color: #333;
+  background-color: #fff;
+  overflow-x: hidden;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 </style>

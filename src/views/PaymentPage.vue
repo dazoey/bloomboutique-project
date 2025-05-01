@@ -1,85 +1,90 @@
 <script>
 import HeaderComponent from '@/components/header/HeaderComponent.vue';
-import HeaderComponent from '@/components/header/HeaderComponent.vue';
+
 export default {
+  name: 'PaymentPage.vue',
+  components: {
+    HeaderComponent
+  },
   data() {
     return {
-      predefinedAmounts: [200000],
+      predefinedAmounts: [250000, 200000, 150000, 100000],
       selectedAmount: null,
       customAmount: null,
       donorName: '',
       donorEmail: '',
       paymentMethod: '',
       isRecurring: false
-    }
+    };
   },
-  name: 'PaymentPage.vue',
-  components: {
-    HeaderComponent
+  computed: {
+    isFormValid() {
+      return (
+        this.donorName.trim() !== '' &&
+        this.donorEmail.trim() !== '' &&
+        this.paymentMethod.trim() !== '' &&
+        this.selectedAmount !== null
+      );
+    }
   },
   methods: {
     selectAmount(amount) {
-      this.selectedAmount = amount
-      this.customAmount = null
+      this.selectedAmount = amount;
+      this.customAmount = null;
     },
     selectCustomAmount() {
       if (this.customAmount) {
-        this.selectedAmount = this.customAmount
+        this.selectedAmount = this.customAmount;
       }
     },
-    submitDonation() {
+    submitPayment() {
       if (this.isFormValid) {
-        console.log('Donation submitted:', {
+        console.log('Pembayaran submitted:', {
           amount: this.selectedAmount,
           name: this.donorName,
           email: this.donorEmail,
           paymentMethod: this.paymentMethod,
           recurring: this.isRecurring
-        })
-        alert('Terima kasih atas donasi Anda!')
+        });
+        alert('Terimakasih Order anda Sedang Kami Proses');
       }
     }
   }
-}
+};
 </script>
-<template>
-   <HeaderComponent/>
-  <div class="donation-container">
-    <h1 class="page-title">Donasi Sekarang</h1>
 
-    <div class="donation-amounts">
-      <h2 class="section-title">Pilih Jumlah Donasi</h2>
+<template>
+  <HeaderComponent/>
+  <div class="pembayaran-container">
+    <h1 class="page-title"></h1>
+
+    <div class="pembayaran-amounts">
+      <h2 class="section-title">Pilih Harga Buket</h2>
       <div class="amount-buttons">
         <button
           v-for="amount in predefinedAmounts"
           :key="amount"
           @click="selectAmount(amount)"
-          :class="{ 'selected': selectedAmount === amount }"
-        >
+          :class="{ 'selected': selectedAmount === amount }">
           Rp {{ amount.toLocaleString() }}
         </button>
-        <input
-          type="number" v-model="customAmount" @input="selectCustomAmount" placeholder="Lainnya" class="custom-amount-input" />
       </div>
     </div>
 
-    <form @submit.prevent="submitDonation" class="donation-form">
+    <form @submit.prevent="submitPayment" class="pembayaran-form">
       <div class="form-group">
         <label>Nama Lengkap</label>
-        <input
-          type="text" v-model="donorName" required
-        />
+        <input type="text" v-model="donorName" required />
       </div>
 
       <div class="form-group">
         <label>Email</label>
-        <input
-          type="email" v-model="donorEmail" required />
+        <input type="email" v-model="donorEmail" required />
       </div>
 
       <div class="form-group">
         <label>Metode Pembayaran</label>
-        <select v-model="paymentMethod" >
+        <select v-model="paymentMethod">
           <option value="">Pilih Metode Pembayaran</option>
           <option value="gopay">GoPay</option>
           <option value="dana">DANA</option>
@@ -90,15 +95,13 @@ export default {
       <button
         type="submit"
         :disabled="!isFormValid"
-        class="submit-button"
-      >
-        Lanjutkan Donasi
-      </button>
+        class="submit-button">Lanjutkan Pembayaran</button>
     </form>
   </div>
 </template>
+
 <style scoped>
-.donation-container {
+.pembayaran-container {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
@@ -110,7 +113,7 @@ export default {
 
 .page-title {
   text-align: center;
-  color: #2c8c43;
+  color: rgb(115, 90, 89);
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -121,7 +124,7 @@ export default {
   color: #333;
 }
 
-.donation-amounts {
+.pembayaran-amounts {
   margin-bottom: 20px;
 }
 
@@ -142,7 +145,7 @@ export default {
 
 .amount-buttons button.selected,
 .amount-buttons button:hover {
-  background-color: #2c8c43;
+  background-color: rgb(115, 90, 89);
   color: white;
 }
 
@@ -152,18 +155,18 @@ export default {
   border-radius: 6px;
 }
 
-.donation-form .form-group {
+.pembayaran-form .form-group {
   margin-bottom: 15px;
 }
 
-.donation-form label {
+.pembayaran-form label {
   display: block;
   margin-bottom: 5px;
   color: #333;
 }
 
-.donation-form input:not([type="checkbox"]),
-.donation-form select {
+.pembayaran-form input:not([type="checkbox"]),
+.pembayaran-form select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -183,7 +186,7 @@ export default {
 .submit-button {
   width: 100%;
   padding: 12px;
-  background-color: #2c8c43;
+  background-color: rgb(115, 90, 89);
   color: white;
   border: none;
   border-radius: 6px;
@@ -192,7 +195,7 @@ export default {
 }
 
 .submit-button:hover {
-  background-color: #25a03b;
+  background-color: rgb(115, 90, 89);
 }
 
 .submit-button:disabled {
