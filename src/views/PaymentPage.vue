@@ -13,18 +13,29 @@ export default {
       customAmount: null,
       donorName: '',
       donorEmail: '',
-      paymentMethod: '',
+      donorPhone: '',
+      paymentMethod: '', 
       isRecurring: false
     };
   },
   computed: {
     isFormValid() {
-      return (
+      const baseValid = (
         this.donorName.trim() !== '' &&
         this.donorEmail.trim() !== '' &&
         this.paymentMethod.trim() !== '' &&
         this.selectedAmount !== null
       );
+
+      if (this.paymentMethod && this.paymentMethod !== '') {
+        return baseValid && this.donorPhone.trim() !== '';
+      }
+
+      return baseValid;
+    },
+
+    shouldShowPhoneField() {
+      return this.paymentMethod && this.paymentMethod !== '';
     }
   },
   methods: {
@@ -37,16 +48,32 @@ export default {
         this.selectedAmount = this.customAmount;
       }
     },
+
+    onPaymentMethodChange() {
+      this.donorPhone = '';
+    },
     submitPayment() {
       if (this.isFormValid) {
         console.log('Pembayaran submitted:', {
           amount: this.selectedAmount,
           name: this.donorName,
           email: this.donorEmail,
+          phone: this.donorPhone,
           paymentMethod: this.paymentMethod,
           recurring: this.isRecurring
         });
         alert('Terimakasih Order anda Sedang Kami Proses');
+      }
+    },
+    paymentChoice() {
+      if (this.paymentMethod === 'gopay') {
+        this.$router.push({ name: 'GopayPayment' });
+      } else if (this.paymentMethod === 'dana') {
+        this.$router.push({ name: 'DanaPayment' });
+      } else if (this.paymentMethod === 'ovo') {
+        this.$router.push({ name: 'OvoPayment' });
+      } else {
+        alert('Silahkan Pilih Metode Pembayaran');
       }
     }
   }
@@ -84,12 +111,25 @@ export default {
 
       <div class="form-group">
         <label>Metode Pembayaran</label>
-        <select v-model="paymentMethod">
+        <select v-model="paymentMethod" @change="onPaymentMethodChange">
           <option value="">Pilih Metode Pembayaran</option>
           <option value="gopay">GoPay</option>
           <option value="dana">DANA</option>
           <option value="ovo">OVO</option>
         </select>
+      </div>
+
+      <div class="form-group phone-field" v-if="shouldShowPhoneField">
+        <label>Nomor Telepon {{ paymentMethod.toUpperCase() }}</label>
+        <input
+          type="tel"
+          v-model="donorPhone"
+          :placeholder="`Masukkan nomor ${paymentMethod.toUpperCase()} Anda`"
+          required
+        />
+        <small class="field-hint">
+          Pastikan nomor {{ paymentMethod.toUpperCase() }} Anda aktif untuk menerima notifikasi pembayaran
+        </small>
       </div>
 
       <button
@@ -163,6 +203,7 @@ export default {
   display: block;
   margin-bottom: 5px;
   color: #333;
+  font-weight: 500;
 }
 
 .pembayaran-form input:not([type="checkbox"]),
@@ -171,6 +212,51 @@ export default {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Styling khusus untuk phone field */
+.phone-field {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  animation: slideDown 0.3s ease-out;
+}
+
+.phone-field label {
+  color: rgb(115, 90, 89);
+  font-weight: 600;
+}
+
+.phone-field input {
+  border: 2px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.phone-field input:focus {
+  border-color: rgb(115, 90, 89);
+  outline: none;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 5px;
+  color: #6c757d;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Animasi untuk phone field */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .checkbox-group {
@@ -192,10 +278,12 @@ export default {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.submit-button:hover {
-  background-color: rgb(115, 90, 89);
+.submit-button:hover:not(:disabled) {
+  background-color: rgb(95, 70, 69);
 }
 
 .submit-button:disabled {
